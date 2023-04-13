@@ -1,0 +1,76 @@
+class Venta {
+
+	var prendas = [];
+	var fecha;
+	var metodoDePago;
+
+	method cantidadDePrendas() {
+		return prendas.size();
+	}
+
+	method precio() {
+		return precioFinal(prendas.sum{prenda => prenda.precio()});
+	}
+}
+
+
+class VentaConTarjeta inherits Venta {
+	
+	var cantidadDeCuotas;
+	var coeficienteFijo;
+
+	override method precio(unPrecio){
+		return cantidadDeCuotas * coeficienteFijo + unPrecio *0.01;
+	}
+}
+
+
+class VentaConEfectivo inherits Venta {
+	
+	method precio(unPrecio){
+		return unPrecio;
+	}
+}
+
+
+class Prenda {
+
+	var tipo;
+	var precioBase;
+	var estado;
+
+	method precio() {
+		return estado.precio(precioBase);
+	}
+}
+
+
+class Estado {
+	
+	method precio(precioBase);
+}
+
+
+class EstadoNuevo inherits Estado {
+	
+	override method precio(precioBase) {
+		return precioBase;
+	}
+}
+
+class EstadoPromocion  inherits Estado{
+	
+	var descuento; 
+
+	override method precio(precioBase) {
+		return precioBase - descuento;
+	}
+}
+
+
+class EstadoLiquidacion inherits Estado{
+	
+	override method precio(precioBase) {
+		return precioBase * 0.5;
+	}
+}
