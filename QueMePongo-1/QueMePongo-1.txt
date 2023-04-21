@@ -1,0 +1,45 @@
+
+class Prenda {
+	
+	tipoPrenda;
+	tela;
+	colorPrincipal;
+	colorSecundario;
+
+// No estoy seguro de si el color secundario va en el constructor porque no se si existe algún limite de parámetros 
+// Si existiesen mas colores de la prenda, quedaria un constructor gigante
+// Probablemente se pueda hacer de alguna otra forma que no se 
+
+	Prenda( unTipoPrenda, unaTela, unColorPrincipal, unColorSecundario) {							// Constructor para evitar uso de setters
+									
+		this.tipoPrenda     = requireNonNull(unTipoPrenda, "El tipo de prenda no puede ser nulo");			// Me aseguro que no ingrese valores nulos
+		this.tela           = requireNonNull(unaTela, "La tela de la prenda no puede ser nula");
+		this.colorPrincipal = requireNonNull(unColorPrincipal, "El color principal de la prenda no puede ser nulo");
+		this.colorSecundario = unColorSecundario;									// Puede ser NULL (que no tenga)
+	}
+
+	metodo categoria{													// Agarro la categoria correspondiente a la prenda
+
+		return tipoPrenda.categoria();
+	}
+}
+
+enum Categoria{							// Hago un enum con las posibles categorias para evitar categorías incorrectas
+	parteSuperior;
+	parteInferior;
+	calzado;
+	accesorios;
+}
+
+
+class TipoPrenda {
+
+	categoria;						// cada prenda tiene su propia categoria para evitar que una prenda no coincida con su tipo						
+	TipoPrenda ( unaCategoria){
+		this.categoria = unaCategoria;
+	}
+
+	metodo getCategoria(){
+		return categoria;
+	}
+}
