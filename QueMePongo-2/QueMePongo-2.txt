@@ -1,0 +1,187 @@
+class Prenda {
+	
+	TipoPrenda tipo;
+	Material material;
+	Color colorPrincipal;
+	Color colorSecundario;
+
+ 	Prenda( unTipoPrenda, unMaterial, unColorPrincipal, unColorSecundario) {	
+
+		this.tipo 			= unTipoPrenda;
+ 		this.material     		= unMaterial;
+		this.colorPrincipal 		= unColorPrincipal;
+		this.colorSecundario 		= unColorSecundario;	           	
+ 	}
+
+	metodo categoria {						// Agarro la categoria correspondiente a la prenda\
+
+		return tipoPrenda.categoria();
+	}
+}
+
+class Color {
+
+	rojo;
+	verde;
+	azul;
+
+	Color(cantRojo, cantVerde, cantAzul){
+		this.rojo 	= cantRojo;
+		this.verde = cantVerde;\
+		this.azul 	= cantAzul;
+	}
+}
+
+
+enum Categoria{							// Hago un enum con las posibles categorias para evitar categorias incorrectas
+	parteSuperior;
+	parteInferior;
+	calzado;
+	accesorios;
+}
+
+
+class TipoPrenda {
+
+	categoria;							// cada prenda tiene su propia categoria para evitar que una prenda no coincida con su tipo						
+	TipoPrenda ( unaCategoria){
+		this.categoria = unaCategoria;
+	}
+
+	metodo getCategoria(){
+		return categoria;
+	}
+}
+
+
+enum Trama {
+
+	lisa;
+	rayada;
+	conLunares;
+	aCuadros;
+	estampado;
+}
+
+
+class Material {
+
+	tipoMaterial;
+	Trama trama;
+
+	Material (unaTrama){
+		if(unaTrama == NULL) {
+			this.trama = lisa;
+		}else {
+			this.trama = unaTrama;
+		}
+	}	
+}
+
+
+class Borrador {
+
+	TipoPrenda tipo;
+	Material material;
+	Color colorPrincipal;
+	Color colorSecundario;
+
+	Borrador (unTipoPrenda) {
+
+		this.tipo = requiredNonNull( unTipoPrenda, "El tipo de prenda no puede ser nula");
+
+	}
+
+	metodo setMaterial(unMaterial){
+		this.material = requireNonNull(unMaterial, "El material de la prenda no puede ser nula");
+	}
+
+	metodo setColorPrincipal(unColor){
+		this.colorPrincipal = requireNonNull(unColor, "El color principal de la prenda no puede ser nulo");
+	}
+
+	metodo setColorSecundario(unColor){
+		this.colorSecundario = unColor;
+	}
+
+	metodo crearPrenda() {
+		return new Prenda( tipo, material, colorPrincipal, colorSecundario);\
+	}
+}
+	
+
+
+class Uniforme {
+
+	prendaSuperior;
+	prendaInferior;
+	calzado;
+}
+
+
+class Sastre () {
+	
+	metodo fabricarUniforme () {
+		return new Uniforme ( this.fabricarParteSuperior(), this.fabricarParteInferior(), this.fabricarCalzado() );
+	}
+
+	metodo fabricarParteSuperior();
+	metodo fabricarParteInferior();
+	metodo fabricarCalzado();
+}
+
+
+class SastreSanJuan inherits Sastre () {
+	
+
+	metodo fabricarParteSuperior (){
+		borrador = new Borrador(Chomba);
+		borrador.setMaterial(Pique);
+		borrador.setColor(new Color(combinacion en rgb que de verde));
+		borrador.crearPrenda();
+	}
+
+	
+	metodo fabricarParteInferior() {
+		borrador = new Borrador(Pantalon);
+		borrador.setMaterial(Acetato);
+		borrador.setColor(new Color(combinacion en rgb que de gris));
+		borrador.crearPrenda();
+	}
+
+	metodo fabricarCalzado() {
+		borrador = new Borrador(Zapatillas);
+		borrador.setMaterial();
+		borrador.setColor(new Color(combinacion en rgb que de blanco));
+		borrador.crearPrenda();
+	}		
+}
+	
+
+class SastreJohnson inherits Sastre () {
+	
+
+	metodo fabricarParteSuperior (){
+		borrador = new Borrador(Camisa);
+		borrador.setMaterial();
+		borrador.setColor(new Color(combinacion en rgb que de blanco));
+		borrador.crearPrenda();
+	}
+
+	
+	metodo fabricarParteInferior() {
+		borrador = new Borrador(Pantalon);
+		borrador.setMaterial();
+		borrador.setColor(new Color(combinacion en rgb que de negro));
+		borrador.crearPrenda();
+	}
+
+	metodo fabricarCalzado() {
+		borrador = new Borrador(Zapatos);
+		borrador.setMaterial();
+		borrador.setColor(new Color(combinacion en rgb que de negro));
+		borrador.crearPrenda();
+	}		
+}	
+
+	}
